@@ -1,11 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { Oceanarium } from 'src/oceanariums/oceanatrium.entity';
+import { Module } from '@nestjs/common';
+import { DatasourceService } from './datasource.service';
 
-@Injectable()
-export class DatasourceService {
-    private oceanariums: Oceanarium[] = [];
-
-    getOceanariums(): Oceanarium[] {
-        return this.oceanariums;
-    }
-}
+@Module({
+  providers: [DatasourceService],
+  exports: [DatasourceService],
+})
+export class DatasourceModule {}

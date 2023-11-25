@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import {Oceanarium} from './oceanatrium.entity.js'
-import { OceanariumController } from './oceanarium.controller.js';
-import { OceanariumService } from './oceanarium.service.js';
+import { OceanariumController } from './oceanarium.controller';
+import { OceanariumService } from './oceanarium.service';
+import { DatasourceModule } from 'src/datasource/datasource.module';
 
 @Module({
   controllers: [OceanariumController],
   providers: [OceanariumService],
-  imports: [Oceanarium],
+  imports: [DatasourceModule],
 })
 export class OceanariumModule {}
