@@ -5,13 +5,14 @@ import { MolluscService } from './molluscs.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Oceanarium } from 'src/oceanariums/oceanarium.entity';
 import { Mollusc } from './molluscs.entity';
+import { Fish } from 'src/fishs/fish.entity';
 
 @Module({
     controllers: [MolluscController],
     providers: [MolluscService],
     imports: [
         DatasourceModule,
-        TypeOrmModule.forFeature([Mollusc, Oceanarium])
+        TypeOrmModule.forFeature([Mollusc, Oceanarium, Fish])
     ],
 })
 

@@ -5,7 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { In, Repository } from "typeorm";
 import { Fish } from "src/fishs/fish.entity";
 import { Mollusc } from "src/molluscs/molluscs.entity";
-import { CreateOceanariumDto } from "./ocanarium.dto";
+import { CreateOceanariumDto } from "./oceanarium.dto";
 import { IncompleteOceanariumDto } from "./incomplete-oceanarium.dto";
 
 

@@ -4,7 +4,7 @@ export class CreateMolluscDto {
     @ApiProperty({example: 'Виноградная улитка', description: 'Название моллюска'})
     name: string;
 
-    @ApiProperty({example: "Улитковые", description: 'Вид моллюска'})
+    @ApiProperty({example: "Брюхоногие", description: 'Класс моллюска'})
     species: string;
 
     @ApiProperty({example: [1, 2], description: 'Список идентификаторов океанариумов'})

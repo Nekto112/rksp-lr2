@@ -1,42 +1,86 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { DatasourceService } from "src/datasource/datasource.service";
 import { Fish } from "./fish.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { In, Repository } from "typeorm";
+import { Oceanarium } from "src/oceanariums/oceanarium.entity";
+import { CreateFishDto } from "./fish.dto";
+import { IncompleteFishDto } from "./incomplete-fish.dto";
 
 
 @Injectable()
 export class FishService{
-    constructor(private readonly datasourceService: DatasourceService) {}
+    constructor(
+        @InjectRepository(Fish)
+        private readonly fishRepository: Repository<Fish>,
+        @InjectRepository(Oceanarium)
+        private readonly oceanariumRepository: Repository<Oceanarium>,
+    ) {}
 
-    create(fish: Fish) {
-        this.datasourceService.getFishs().push(fish);
-        return Fish;
+    async create(fishDto: CreateFishDto) : Promise<Fish>{
+        const fish : Fish = this.fishRepository.create();
+
+        fish.name = fishDto.name;
+        fish.location = fishDto.location;
+        fish.habitat = fishDto.habitat;
+        fish.species = fishDto.species;
+        const oceanariums = await this.oceanariumRepository.findBy({
+            id: In(fishDto.oceanariums)
+        })
+        fish.oceanariums = oceanariums;
+
+        this.fishRepository.save(fish);
+        return fish;
     }
 
-    findOne(id: number) {
-        return this.datasourceService
-            .getFishs()
-            .find((Fish) => Fish.id === id);
+    findOne(id: number) : Promise<Fish>{
+        return this.fishRepository.findOne({
+            where: {id},
+            relations : {
+                oceanariums: true,
+            }
+        });
     }
 
-    findAll(): Fish[] {
-        return this.datasourceService.getFishs();
+    async findAll(): Promise<Fish[]> {
+        const fishs = await this.fishRepository.find({
+            relations : {
+                oceanariums: true,
+            }
+        })
+        return fishs;
     }
     
-    update(id: number, updatedFish: Fish) {
-        const index = this.datasourceService
-            .getFishs()
-            .findIndex((author) => author.id === id);
-        
-        this.datasourceService.getFishs()[index] = updatedFish;
-        return this.datasourceService.getFishs()[index];
+    async update(id: number, updatedFish: Fish) : Promise<Fish> {
+        const fish = await this.fishRepository.findOne({where: {id}});
+
+        fish.name = updatedFish.name;
+        fish.location = updatedFish.location;
+        fish.habitat = updatedFish.habitat;
+        fish.species = updatedFish.species;
+        fish.oceanariums = updatedFish.oceanariums;
+
+        this.fishRepository.save(fish);
+        return fish;
     }
     
     remove(id: number) {
-        const index = this.datasourceService
-            .getFishs()
-            .findIndex((author) => author.id === id);
-        this.datasourceService.getFishs().splice(index, 1);
-        return HttpStatus.OK;
+        return this.fishRepository.delete({id});
+    }
+
+    async findIncomplete() : Promise<IncompleteFishDto[]>{
+        const fishs = await this.fishRepository.find();
+
+        const incompleteFishs : IncompleteFishDto[] = fishs.map((fish) => {
+            const incompleteFish = new IncompleteFishDto();
+
+            incompleteFish.name = fish.name;
+            incompleteFish.species = fish.species;
+            
+            return incompleteFish;
+        });
+
+        return incompleteFishs;
     }
     
 }

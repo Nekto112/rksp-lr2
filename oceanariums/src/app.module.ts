@@ -12,15 +12,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     MolluscsModule, 
     DatasourceModule,
     TypeOrmModule.forRoot({
-      type: 'postgres', //тип подключаемой БД
-      port: 5432, //порт
+      type: 'postgres',
+      port: 5432,
       database: 'rksp',
-      username: 'postgres', //имя пользователя
-      password: '1234', //пароль
-      host: 'localhost', //хост, в нашем случае БД развернута локально
-      synchronize: false, //отключаем автосинхронизацию(в противном случае при каждом перезапуске наша БД будет создаваться заново)
-      logging: 'all', //включим логирование для удобства отслеживания процессов
-	    entities: ['dist/**/*.entity{.ts,.js}'], //указываем путь к сущностям
+      username: 'postgres',
+      password: '1234',
+      host: 'localhost',
+      synchronize: true,
+      logging: 'all',
+	    entities: ['dist/**/*.entity{.ts,.js}'],
     }),
   ],
   controllers: [],

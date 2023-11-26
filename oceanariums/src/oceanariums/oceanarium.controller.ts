@@ -1,7 +1,7 @@
 import { OceanariumService } from "./oceanarium.service";
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common/decorators";
 import { Oceanarium } from "./oceanarium.entity";
-import { CreateOceanariumDto } from "./ocanarium.dto";
+import { CreateOceanariumDto } from "./oceanarium.dto";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 
 @Controller('oceanariums')
@@ -9,16 +9,19 @@ import { ApiOperation, ApiTags } from "@nestjs/swagger";
 export class OceanariumController{
     constructor (private readonly oceanariumService: OceanariumService) {}
 
+    @ApiOperation({ summary: 'Просмотреть все океанариумы' }) 
     @Get()
     findAll(){
         return this.oceanariumService.findAll();
     }
 
+    @ApiOperation({ summary: 'Просмотреть океанариум по id' }) 
     @Get(':id')
     findOne(@Param('id') id: string){
         return this.oceanariumService.findOne(+id);
     }
 
+    @ApiOperation({ summary: 'Изменение океанариума' }) 
     @Put(':id')
     update(@Param('id') id: string, @Body() updateOceanarium: Oceanarium){
         return this.oceanariumService.update(+id, updateOceanarium);
@@ -30,6 +33,7 @@ export class OceanariumController{
         return this.oceanariumService.create(createOceanarium);
     }
 
+    @ApiOperation({ summary: 'Удалить океанариум' }) 
     @Delete(':id')
     remove(@Param('id') id: string){
         return this.oceanariumService.remove(+id);

@@ -1,43 +1,82 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { DatasourceService } from "src/datasource/datasource.service";
 import { Mollusc } from "./molluscs.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { In, Repository } from "typeorm";
+import { Oceanarium } from "src/oceanariums/oceanarium.entity";
+import { CreateMolluscDto } from "./molluscs.dto";
+import { IncompleteMolluscsDto } from "./incomplete-molluscs.dto";
 
 
 
 @Injectable()
 export class MolluscService{
-    constructor(private readonly datasourceService: DatasourceService) {}
+    constructor(
+        @InjectRepository(Mollusc)
+        private readonly molluscRepository: Repository<Mollusc>,
+        @InjectRepository(Oceanarium)
+        private readonly oceanariumRepository: Repository<Oceanarium>,
+    ) {}
 
-    create(mollusc: Mollusc) {
-        this.datasourceService.getMolluscs().push(mollusc);
+    async create(molluscDto: CreateMolluscDto) : Promise<Mollusc> {
+        const mollusc : Mollusc = this.molluscRepository.create();
+
+        mollusc.name = molluscDto.name;
+        mollusc.species = molluscDto.species;
+        const oceanariums = await this.oceanariumRepository.findBy({
+            id: In(molluscDto.oceanariums)
+        })
+        mollusc.oceanariums = oceanariums;
+
+        this.molluscRepository.save(mollusc);
         return mollusc;
     }
 
-    findOne(id: number) {
-        return this.datasourceService
-            .getMolluscs()
-            .find((mollusc) => mollusc.id === id);
+    findOne(id: number) : Promise<Mollusc>{
+        return this.molluscRepository.findOne({
+            where: {id},
+            relations : {
+                oceanariums: true,
+            }
+        });
     }
 
-    findAll(): Mollusc[] {
-        return this.datasourceService.getMolluscs();
+    async findAll() : Promise<Mollusc[]> {
+        const molluscs = await this.molluscRepository.find({
+            relations:{
+                oceanariums: true,
+            }
+        });
+        return molluscs;
     }
     
-    update(id: number, updatedMollusc: Mollusc) {
-        const index = this.datasourceService
-            .getMolluscs()
-            .findIndex((author) => author.id === id);
-        
-        this.datasourceService.getMolluscs()[index] = updatedMollusc;
-        return this.datasourceService.getMolluscs()[index];
+    async update(id: number, updatedMollusc: Mollusc)  : Promise<Mollusc>{
+        const mollusc = await this.molluscRepository.findOne({where: {id}});
+
+        mollusc.name = updatedMollusc.name;
+        mollusc.species = updatedMollusc.species;
+        mollusc.oceanariums = updatedMollusc.oceanariums;
+
+        this.molluscRepository.save(mollusc);
+        return mollusc;
     }
     
     remove(id: number) {
-        const index = this.datasourceService
-            .getMolluscs()
-            .findIndex((author) => author.id === id);
-        this.datasourceService.getMolluscs().splice(index, 1);
-        return HttpStatus.OK;
+        this.molluscRepository.delete({id});
     }
-    
+
+    async findIncomplete() : Promise<IncompleteMolluscsDto[]>{
+        const molluscs = await this.molluscRepository.find();
+
+        const incompleteMolluscs : IncompleteMolluscsDto[] = molluscs.map((mollusc) => {
+            const incompleteMollusc = new IncompleteMolluscsDto();
+
+            incompleteMollusc.name = mollusc.name;
+            incompleteMollusc.species = mollusc.species;
+            
+            return incompleteMollusc;
+        });
+
+        return incompleteMolluscs;
+    }
 }
