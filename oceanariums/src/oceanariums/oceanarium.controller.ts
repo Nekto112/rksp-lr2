@@ -1,6 +1,7 @@
 import { OceanariumService } from "./oceanarium.service";
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common/decorators";
 import { Oceanarium } from "./oceanarium.entity";
+import { CreateOceanariumDto } from "./ocanarium.dto";
 
 @Controller('oceanariums')
 export class OceanariumController{
@@ -22,7 +23,7 @@ export class OceanariumController{
     }
 
     @Post()
-    create(@Body() createOceanarium: Oceanarium){
+    create(@Body() createOceanarium: CreateOceanariumDto){
         return this.oceanariumService.create(createOceanarium);
     }
 

@@ -12,7 +12,7 @@ export class Fish {
     @Column()
     habitat: string;
     @Column()
-    location: string[];
+    location: string;
 
     @ManyToMany((type) => Oceanarium, (oceanarium) => oceanarium.fishs)
     @JoinTable({

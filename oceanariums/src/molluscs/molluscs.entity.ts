@@ -1,7 +1,7 @@
 import { Oceanarium } from "src/oceanariums/oceanarium.entity";
-import { Column, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
-
+@Entity ("mollusc")
 export class Mollusc {
     @PrimaryGeneratedColumn()
     id: number;
