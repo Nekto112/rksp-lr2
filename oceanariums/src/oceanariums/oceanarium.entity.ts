@@ -1,6 +1,6 @@
 export class Oceanarium {
     id: number;
-    fullname: string;
-    position: string;
+    name: string;
+    location: string;
     grade: string;
 }

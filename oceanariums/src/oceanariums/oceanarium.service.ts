@@ -1,6 +1,6 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { DatasourceService } from "src/datasource/datasource.service";
-import { Oceanarium } from "./oceanatrium.entity";
+import { Oceanarium } from "./oceanarium.entity";
 
 
 @Injectable()
