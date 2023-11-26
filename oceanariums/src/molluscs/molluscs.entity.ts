@@ -5,10 +5,13 @@ import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "t
 export class Mollusc {
     @PrimaryGeneratedColumn()
     id: number;
+
     @Column({unique: true})
     name: string;
+
     @Column()
-    species: string; 
+    species: string;
+     
     @ManyToMany((type) => Oceanarium, (oceanarium) => oceanarium.molluscs)
     @JoinTable({
         name: 'oceanarium_mollus',

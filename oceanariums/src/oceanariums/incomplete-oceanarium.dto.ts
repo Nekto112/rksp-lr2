@@ -1,6 +1,5 @@
 export class IncompleteOceanariumDto {
-    id: number;
-    name: string;
-    location: string;
-  }
-  
+  id: number;
+  name: string;
+  location: string;
+}

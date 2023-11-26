@@ -14,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres', //тип подключаемой БД
       port: 5432, //порт
+      database: 'rksp',
       username: 'postgres', //имя пользователя
       password: '1234', //пароль
       host: 'localhost', //хост, в нашем случае БД развернута локально
