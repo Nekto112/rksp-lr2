@@ -4,11 +4,6 @@ import { DatasourceModule } from './datasource/datasource.module';
 import { FishModule } from './fishs/fish.module';
 import { MolluscsModule } from './molluscs/molluscs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MainController } from './controllers/main.controller';
-import { OceanariumService } from './oceanariums/oceanarium.service';
-import { MolluscService } from './molluscs/molluscs.service';
-import { FishService } from './fishs/fish.service';
-import { PagesModule } from './controllers/pages.module';
 
 @Module({
   imports: [
@@ -16,7 +11,6 @@ import { PagesModule } from './controllers/pages.module';
     FishModule, 
     MolluscsModule, 
     DatasourceModule,
-    PagesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       port: 5432,
