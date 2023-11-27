@@ -26,22 +26,8 @@ export class OceanariumService{
         oceanarium.name = oceanariumDto.name;
         oceanarium.location = oceanariumDto.location;
         oceanarium.grade = oceanariumDto.grade;
-
         oceanarium.fishs = [];
-        if(oceanariumDto.fishs.length > 0){
-            const fishs = await this.fishRepository.findBy({
-                id: In(oceanariumDto.fishs),
-            })
-            oceanarium.fishs = fishs;
-        }
-
         oceanarium.molluscs = [];
-        if(oceanariumDto.molluscs.length > 0){
-            const molluscs = await this.molluscsRepository.findBy({
-                id: In(oceanariumDto.fishs),
-            })
-            oceanarium.molluscs = molluscs;
-        }
 
         await this.oceanariumRepository.save(oceanarium);
         return oceanarium;
