@@ -16,7 +16,7 @@ export class Fish {
     @Column()
     species: string;
 
-    @ApiProperty({example: 'Пресноводные', description: 'Среда обитания'})
+    @ApiProperty({example: 'Пресноводной', description: 'Среда обитания'})
     @Column()
     habitat: string;
 
