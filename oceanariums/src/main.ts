@@ -15,11 +15,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config); // создаем апи документацию
   SwaggerModule.setup('api_docs', app, document); //включаем документацию Swagger по пути localhost:3001/api_docs
 
-  app.useStaticAssets(join(__dirname, '..', '../public'));
-  app.setBaseViewsDir(join(__dirname, '..', '../views'));
-  app.setViewEngine('pug');
+  app.enableCors();
 
-  await app.listen(3001);
+  await app.listen(8000);
   await app.setGlobalPrefix('/api'); //глобальный префикс для роутов контроллера
 }
 bootstrap();
