@@ -14,7 +14,10 @@ class OceanariumComponent extends React.Component  {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/oceanariums/1')
+        const queryParameters = new URLSearchParams(window.location.search);
+        const id = queryParameters.get("id");
+        
+        fetch('http://localhost:8000/oceanariums/'+id)
           .then(res => res.json())
           .then(
             (result) => {

@@ -21,7 +21,7 @@ function App() {
             />
 
             <Route 
-              path="/about" 
+              path="/oceanarium" 
               element={<OceanariumComponent />} 
             />
 
