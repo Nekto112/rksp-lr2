@@ -10,7 +10,7 @@ const molluscCatalogPage = (molluscs) => {
                     <h3>{mollusc.name}</h3>
                     <a>Относится к: {mollusc.species}</a>
                     <div>
-                    <a className="btn btn-primary btn-xl rounded-pill mt-5" href={"/fish?id="+mollusc.id}>Узнать больше</a>
+                    <a className="btn btn-primary btn-xl rounded-pill mt-5" href={"/mollusc?id="+mollusc.id}>Узнать больше</a>
                     </div>
                 </Form.Group>
             ))}

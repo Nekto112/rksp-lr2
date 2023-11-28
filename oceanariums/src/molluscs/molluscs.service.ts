@@ -73,6 +73,7 @@ export class MolluscService{
 
             incompleteMollusc.name = mollusc.name;
             incompleteMollusc.species = mollusc.species;
+            incompleteMollusc.id = mollusc.id;
             
             return incompleteMollusc;
         });

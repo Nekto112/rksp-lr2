@@ -76,6 +76,7 @@ export class FishService{
 
             incompleteFish.name = fish.name;
             incompleteFish.location = fish.location;
+            incompleteFish.id = fish.id;
             
             return incompleteFish;
         });
