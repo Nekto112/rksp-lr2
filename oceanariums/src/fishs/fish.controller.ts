@@ -44,4 +44,10 @@ export class FishController{
     random(@Param('id') id: string){
         return this.fishService.randomFish();
     }
+
+    @ApiOperation({ summary: 'Получить неполых рыб' }) 
+    @Get('/incomplete/:id')
+    getIncomplete(@Param('id') id: string){
+        return this.fishService.findIncomplete();
+    }
 }

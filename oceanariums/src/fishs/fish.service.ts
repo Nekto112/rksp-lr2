@@ -75,7 +75,7 @@ export class FishService{
             const incompleteFish = new IncompleteFishDto();
 
             incompleteFish.name = fish.name;
-            incompleteFish.species = fish.species;
+            incompleteFish.location = fish.location;
             
             return incompleteFish;
         });

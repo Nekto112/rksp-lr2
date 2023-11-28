@@ -14,7 +14,7 @@ class FishCatalogComponent extends React.Component  {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/fishs')
+        fetch('http://localhost:8000/Fishs/incomplete/0')
           .then(res => res.json())
           .then(
             (result) => {

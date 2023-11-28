@@ -44,4 +44,10 @@ export class OceanariumController{
     random(@Param('num') num: string){
         return this.oceanariumService.randomOceanariums(+num);
     }
+
+    @ApiOperation({ summary: 'неполные океанариумы'})
+    @Get('/incomplete/:num')
+    getIncomplete(@Param('num') num: string){
+        return this.oceanariumService.findIncomplete();
+    }
 }

@@ -14,7 +14,7 @@ class CatalogComponent extends React.Component  {
     }
 
     componentDidMount() {        
-        fetch('http://localhost:8000/oceanariums')
+        fetch('http://localhost:8000/oceanariums/incomplete/0')
           .then(res => res.json())
           .then(
             (result) => {

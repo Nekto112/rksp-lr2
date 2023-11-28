@@ -14,7 +14,7 @@ class MolluscCatalogComponent extends React.Component  {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/molluscs')
+        fetch('http://localhost:8000/molluscs/incmplete/0')
           .then(res => res.json())
           .then(
             (result) => {

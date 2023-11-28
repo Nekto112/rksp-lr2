@@ -38,4 +38,10 @@ export class MolluscController{
     remove(@Param('id') id: string){
         return this.molluscService.remove(+id);
     }
+
+    @ApiOperation({ summary: 'Получить неполных моллюсков' }) 
+    @Get('incmplete/:id')
+    findIncomplete(@Param('id') id: string){
+        return this.molluscService.findIncomplete();
+    }
 }

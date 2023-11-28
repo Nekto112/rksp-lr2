@@ -89,6 +89,7 @@ export class OceanariumService{
             incompleteOceanarium.id = oceanarium.id;
             incompleteOceanarium.name = oceanarium.name;
             incompleteOceanarium.location = oceanarium.location;
+            incompleteOceanarium.grade = oceanarium.grade;
             return incompleteOceanarium;
         });
         
