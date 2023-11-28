@@ -94,5 +94,16 @@ export class OceanariumService{
         
         return incompleteOceanariums;
     }
+
+    async randomOceanariums(num : number) : Promise<Oceanarium[]>{
+        const oceanariums = await this.oceanariumRepository
+            .createQueryBuilder('user')
+            .select()
+            .orderBy('RANDOM()')
+            .take(num)
+            .getMany();
+
+        return oceanariums;
+    }
     
 }

@@ -83,4 +83,15 @@ export class FishService{
         return incompleteFishs;
     }
     
+    async randomFish() : Promise<Fish>{
+        const fish = await this.fishRepository
+            .createQueryBuilder('user')
+            .select()
+            .orderBy("RANDOM()")
+            .take(1)
+            .getOne();
+            
+        return fish;
+    }
+
 }

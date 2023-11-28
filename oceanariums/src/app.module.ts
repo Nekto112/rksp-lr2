@@ -14,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       port: 5432,
-      database: 'rksp-lr4',
+      database: 'rksplr4',
       username: 'postgres',
       password: '1234',
       host: 'localhost',

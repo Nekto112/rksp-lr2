@@ -38,4 +38,10 @@ export class FishController{
     remove(@Param('id') id: string){
         return this.fishService.remove(+id);
     }
+
+    @ApiOperation({ summary: 'Получить случайную рыбу' }) 
+    @Get('/random/:id')
+    random(@Param('id') id: string){
+        return this.fishService.randomFish();
+    }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const navigationBar = () => {
   return (
@@ -14,15 +15,21 @@ const navigationBar = () => {
                     <li className="nav-item">
                         <a className="nav-link" href="catalog">Океанариумы</a>
                     </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Представители
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="#">Рыбы</a></li>
-                            <li><a className="dropdown-item" href="#">Моллюски</a></li>
-                        </ul>
+                    <li className="nav-item">
+                        <a className="nav-link" href="fishcatalog">Рыбы</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="mollusccatalog">Моллюски</a>
+                    </li>
+                    {/* <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Живность
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className="dropdown-menu">
+                            <Dropdown.Item><a className="dropdown-item" href="fishcatalog">Рыбы</a></Dropdown.Item>
+                            <Dropdown.Item><a className="dropdown-item" href="#">Моллюски</a></Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown> */}
                 </ul>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ms-auto">

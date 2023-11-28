@@ -15,7 +15,7 @@ class MainComponent extends React.Component  {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/oceanariums')
+        fetch('http://localhost:8000/oceanariums/random/2')
             .then(res => res.json())
             .then(
                 (result) => {
@@ -32,7 +32,7 @@ class MainComponent extends React.Component  {
                 }
             )
 
-        fetch('http://localhost:8000/fishs/2')
+        fetch('http://localhost:8000/fishs/random/1')
             .then(res => res.json())
             .then(
                 (result) => {

@@ -38,4 +38,10 @@ export class OceanariumController{
     remove(@Param('id') id: string){
         return this.oceanariumService.remove(+id);
     }
+
+    @ApiOperation({ summary: 'n случайных океанариума'})
+    @Get('/random/:num')
+    random(@Param('num') num: string){
+        return this.oceanariumService.randomOceanariums(+num);
+    }
 }

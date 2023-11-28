@@ -8,18 +8,19 @@ const oceanariumPage = (oceanarium, fishs, molluscs) => {
       <hr></hr>
       <a>{oceanarium.descr}</a>
       <hr></hr>
+      <a>Местоположение: {oceanarium.location} <div className='text-center'> оценка: {oceanarium.grade}/5</div></a>
       <h2>Некоторые обитатели</h2>
       <div className="row row-cols-2">
           {fishs.map((fish) => (
             <Form.Group key={fish.id} className='col' >
                 <h3>{fish.name}</h3>
-                <a className="btn btn-primary btn-xl rounded-pill mt-5" href="#">Узнать больше</a>
+                <a className="btn btn-primary btn-xl rounded-pill mt-5" href={"/fish?id="+fish.id}>Узнать больше</a>
             </Form.Group>
           ))}
           {molluscs.map((mollusc) => (
             <Form.Group key={mollusc.id} className='col' >
                 <h3>{mollusc.name}</h3>
-                <a className="btn btn-primary btn-xl rounded-pill mt-5" href="#">Узнать больше</a>
+                <a className="btn btn-primary btn-xl rounded-pill mt-5" href={"/mollusc?id="+mollusc.id}>Узнать больше</a>
             </Form.Group>
           ))}
       </div>
