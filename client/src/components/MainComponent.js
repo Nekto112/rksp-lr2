@@ -15,7 +15,7 @@ class MainComponent extends React.Component  {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/oceanariums/2')
+        fetch('http://localhost:8000/oceanariums')
             .then(res => res.json())
             .then(
                 (result) => {

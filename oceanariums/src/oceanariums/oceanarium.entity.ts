@@ -13,13 +13,17 @@ export class Oceanarium {
     @Column({unique: true})
     name: string;
 
+    @ApiProperty({example: "Аквариум имеет современный дизайн и разнообразные зоны, посвященные различным темам, таким как Токийский залив, пингвины и тюлени, острова Огасавара и другие. В аквариуме обитает более 10 000 морских существ", description: 'Описание океанариума'})
+    @Column()
+    descr: string;
+
     @ApiProperty({example: "Токио", description: 'Расположение океанариума'})
     @Column()
     location: string;
 
-    @ApiProperty({example: "Отлично", description: 'Оценка океанариума'})
+    @ApiProperty({example: "5", description: 'Оценка океанариума'})
     @Column()
-    grade: string;
+    grade: number;
     
     @ManyToMany((type) => Fish, (fish) => fish.oceanariums) 
     @JoinTable({

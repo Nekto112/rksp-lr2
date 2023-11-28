@@ -5,16 +5,18 @@ import {
   Route,
 } from 'react-router-dom';
 import OceanariumComponent from "./components/OceanariumComponent";
-import navBar from "./pages/navBar";
+import NavigationBarComponent from "./components/NavigationBarComponent.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/styles.css"; 
 import MainComponent from "./components/MainComponent";
+import CatalogComponent from "./components/CatalogComponent";
 
 
 function App() {
   return (
     <div>
       <Router>
+        {<NavigationBarComponent />}
         <Routes>
             <Route 
               exact path="/" 
@@ -27,18 +29,8 @@ function App() {
             />
 
             <Route
-              path="/contact"
-              element={<OceanariumComponent />}
-            />
-
-            <Route 
-              path="/blogs" 
-              element={<OceanariumComponent />} 
-            />
-
-            <Route
-                path="/sign-up"
-                element={<OceanariumComponent />}
+              path="/catalog"
+              element={<CatalogComponent />}
             />
         </Routes>
       </Router>

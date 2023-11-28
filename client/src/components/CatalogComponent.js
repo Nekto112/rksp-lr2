@@ -1,29 +1,26 @@
 import React from "react";
-import oceanariumPage from "../pages/oceanariumPage";
 import loadPage from "../pages/loadPage";
 import errorPage from "../pages/errorPage";
+import catalogPage from "../pages/catalogPage";
 
-class OceanariumComponent extends React.Component  {
+class CatalogComponent extends React.Component  {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            oceanarium: {}
+            oceanariums: {}
         };
     }
 
-    componentDidMount() {
-        const queryParameters = new URLSearchParams(window.location.search);
-        const id = queryParameters.get("id");
-        
-        fetch('http://localhost:8000/oceanariums/'+id)
+    componentDidMount() {        
+        fetch('http://localhost:8000/oceanariums')
           .then(res => res.json())
           .then(
             (result) => {
                 this.setState({
                     isLoaded: true,
-                    oceanarium: result
+                    oceanariums: result
                 });
             },
             (error) => {
@@ -36,15 +33,15 @@ class OceanariumComponent extends React.Component  {
     }
 
     render() {
-        const { error, isLoaded, oceanarium } = this.state;
+        const { error, isLoaded, oceanariums } = this.state;
         if (error) {
             return errorPage(error);
         } else if (!isLoaded) {
             return loadPage();
         } else {
-            return oceanariumPage(oceanarium, oceanarium.fishs, oceanarium.molluscs);
+            return catalogPage(oceanariums);
         }
     }
 };
  
-export default OceanariumComponent;
+export default CatalogComponent;

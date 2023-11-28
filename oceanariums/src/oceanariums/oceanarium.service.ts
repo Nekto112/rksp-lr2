@@ -26,8 +26,17 @@ export class OceanariumService{
         oceanarium.name = oceanariumDto.name;
         oceanarium.location = oceanariumDto.location;
         oceanarium.grade = oceanariumDto.grade;
-        oceanarium.fishs = [];
-        oceanarium.molluscs = [];
+        oceanarium.descr = oceanariumDto.descr;
+        
+        const fishs = await this.fishRepository.findBy({
+            id: In(oceanariumDto.fishs)
+        })
+        oceanarium.fishs = fishs;
+
+        const molluscs = await this.molluscsRepository.findBy({
+            id: In(oceanariumDto.molluscs)
+        });
+        oceanarium.molluscs = molluscs;
 
         await this.oceanariumRepository.save(oceanarium);
         return oceanarium;
@@ -61,6 +70,7 @@ export class OceanariumService{
         oceanarium.grade = updatedOceanarium.grade;
         oceanarium.location = updatedOceanarium.location;
         oceanarium.fishs = updatedOceanarium.fishs;
+        oceanarium.descr = updatedOceanarium.descr;
         oceanarium.molluscs = updatedOceanarium.molluscs;
 
         await this.oceanariumRepository.save(oceanarium);
