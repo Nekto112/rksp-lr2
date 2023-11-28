@@ -8,6 +8,7 @@ import OceanariumComponent from "./components/OceanariumComponent";
 import navBar from "./pages/navBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/styles.css"; 
+import MainComponent from "./components/MainComponent";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Routes>
             <Route 
               exact path="/" 
-              element={<OceanariumComponent />} 
+              element={<MainComponent />} 
             />
 
             <Route 
